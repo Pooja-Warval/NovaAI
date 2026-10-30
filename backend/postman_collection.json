@@ -1,0 +1,122 @@
+{
+  "info": {
+    "name": "Nova AI - Avatar Backend API",
+    "_postman_id": "nova-ai-avatar-collection-v1",
+    "description": "Production Postman collection for testing the Nova AI Marketing Avatar Backend (D-ID Agents API)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        },
+        "description": "Check if backend server is online and operational."
+      }
+    },
+    {
+      "name": "2. Get Avatar Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/avatar/status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "avatar", "status"]
+        },
+        "description": "Diagnostic check for D-ID API key presence and agent readiness."
+      }
+    },
+    {
+      "name": "3. Get Public Avatar Config",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/avatar/config",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "avatar", "config"]
+        },
+        "description": "Returns safe public config (agentId, recommended voice, starter prompts) for the frontend. Never returns private keys."
+      }
+    },
+    {
+      "name": "4. Initialize D-ID Agent",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"forceRecreate\": false\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avatar/initialize",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "avatar", "initialize"]
+        },
+        "description": "Initializes or retrieves the D-ID marketing guide agent. Avoids duplicate creation."
+      }
+    },
+    {
+      "name": "5. Generate Client Key",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"allowedDomains\": [\"http://localhost:5173\"]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avatar/client-key",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "avatar", "client-key"]
+        },
+        "description": "Generates a scoped client key restricted to the frontend origin for real-time WebRTC SDK connection."
+      }
+    },
+    {
+      "name": "6. Disconnect Avatar Session",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"sess_live_abc123\",\n  \"reason\": \"User finished marketing session\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avatar/disconnect",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "avatar", "disconnect"]
+        },
+        "description": "Handles session cleanup and telemetry logging on avatar disconnect."
+      }
+    }
+  ]
+}

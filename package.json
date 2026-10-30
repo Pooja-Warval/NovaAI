@@ -1,0 +1,19 @@
+{
+  "name": "nova-ai-workspace",
+  "version": "1.0.0",
+  "description": "Nova AI - Hackathon Workspace",
+  "scripts": {
+    "install:backend": "npm --prefix backend install",
+    "dev": "npm --prefix backend run dev",
+    "build": "npm --prefix backend run build",
+    "start": "npm --prefix backend run start"
+  },
+  "keywords": [
+    "hackathon",
+    "nova-ai",
+    "avatar",
+    "d-id"
+  ],
+  "author": "Nova AI Team",
+  "license": "ISC"
+}

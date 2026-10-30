@@ -1,0 +1,37 @@
+{
+  "name": "nova-ai-backend",
+  "version": "1.0.0",
+  "description": "Nova AI - Production-Ready AI Avatar Backend Module using D-ID Agents API",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:ts-node": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "keywords": [
+    "ai",
+    "avatar",
+    "d-id",
+    "marketing",
+    "agents-api",
+    "express",
+    "typescript"
+  ],
+  "author": "Nova AI Team",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
